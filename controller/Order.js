@@ -32,6 +32,15 @@ exports.fetchOrders = async (req, resp) => {
   }
 };
 
+exports.fetchOrdersById = async (req, resp) => {
+  try {
+    const orders = await Order.find({ user: req.params.id });
+    resp.status(200).json(orders);
+  } catch (err) {
+    resp.status(400).json(err);
+  }
+};
+
 exports.updateOrder = async (req, resp) => {
   try {
     const orderData = await Order.findByIdAndUpdate(req.params.id, req.body, {

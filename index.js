@@ -23,6 +23,7 @@ const {
   fetchOrders,
   deleteOrder,
   updateOrder,
+  fetchOrdersById,
 } = require("./controller/Order");
 const session = require("express-session");
 const passport = require("passport");
@@ -80,6 +81,7 @@ app.patch("/cart/:id", updateCartItem);
 
 app.post("/orders", createOrder);
 app.get("/orders", fetchOrders);
+app.get("/orders/:id", fetchOrdersById);
 app.delete("/orders/:id", deleteOrder);
 app.patch("/orders/:id", updateOrder);
 
