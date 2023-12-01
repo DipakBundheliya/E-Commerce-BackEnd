@@ -80,8 +80,8 @@ app.delete("/cart/:id", deleteCartItem);
 app.patch("/cart/:id", updateCartItem);
 
 app.post("/orders", createOrder);
+app.get("/ordersOfUser/:id", fetchOrdersById);
 app.get("/orders", fetchOrders);
-app.get("/orders/:id", fetchOrdersById);
 app.delete("/orders/:id", deleteOrder);
 app.patch("/orders/:id", updateOrder);
 
