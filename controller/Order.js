@@ -32,11 +32,12 @@ exports.fetchOrders = async (req, resp) => {
   }
 };
 
-exports.fetchOrdersById = async (req, resp) => {
+exports.fetchUserOrders = async (req, resp) => {
   try {
-    const orders = await Order.find({ user: req.params.id });
+    const orders = await Order.find({ user: req.query.id });
     resp.status(200).json(orders);
   } catch (err) {
+    console.log(err);
     resp.status(400).json(err);
   }
 };
