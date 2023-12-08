@@ -12,6 +12,7 @@ exports.createProduct = async (req, resp) => {
 
 exports.fetchProductsByFilter = async (req, resp) => {
   let condition = {}; // this used for filter deleted product for user& not in case of admin
+  console.log(req.query);
 
   if (!req.query.admin) {
     condition = { deleted: { $ne: true } };
@@ -52,6 +53,7 @@ exports.fetchProductsByFilter = async (req, resp) => {
 
   try {
     const doc = await query.exec();
+    console.log(doc);
     resp.set("X-Total-Count", totalDocs);
     resp.status(201).json(doc);
   } catch (err) {
