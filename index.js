@@ -48,7 +48,7 @@ app.use(
 
 const main = async () => {
   await mongoose.connect(
-    "mongodb://bundheliyadeep:Deep1234@ac-xo85jjn-shard-00-00.hpg57sk.mongodb.net:27017,ac-xo85jjn-shard-00-01.hpg57sk.mongodb.net:27017,ac-xo85jjn-shard-00-02.hpg57sk.mongodb.net:27017/?ssl=true&replicaSet=atlas-mfpcek-shard-0&authSource=admin&retryWrites=true&w=majority"
+    "mongodb+srv://bundheliyadeep:Deep1234@cluster0.hpg57sk.mongodb.net/ecommerce?retryWrites=true&w=majority"
   );
   console.log("database connected");
 };
