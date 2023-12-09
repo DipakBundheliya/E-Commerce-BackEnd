@@ -46,7 +46,6 @@ app.use(
     exposedHeaders: ["X-Total-Count"],
   })
 ); // to parse req.body
-app.set("trust proxy", 1); // trust first proxy
 app.use(
   session({
     secret: "Stay Signin secret",
