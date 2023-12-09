@@ -46,14 +46,14 @@ app.use(
     exposedHeaders: ["X-Total-Count"],
   })
 ); // to parse req.body
-app.use(
-  session({
-    secret: "Stay Signin secret",
-    resave: true,
-    saveUninitialized: true,
-    cookie: { secure: false, maxAge: 2 * 60000 },
-  })
-);
+// app.use(
+//   session({
+//     secret: "Stay Signin secret",
+//     resave: true,
+//     saveUninitialized: true,
+//     cookie: { secure: false, maxAge: 2 * 60000 },
+//   })
+// );
 
 const main = async () => {
   await mongoose.connect(
