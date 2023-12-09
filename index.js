@@ -11,7 +11,7 @@ const {
 const { createBrand, fetchBrands } = require("./controller/Brand");
 const { createCategory, fetchCategories } = require("./controller/Category");
 const { fetchUserById, updateUser } = require("./controller/User");
-const { createUser, loginUser } = require("./controller/Auth");
+const { createUser, loginUser, hasLoginnedUser } = require("./controller/Auth");
 const {
   addToCart,
   fetchCartByUser,
@@ -27,6 +27,8 @@ const {
 } = require("./controller/Order");
 const session = require("express-session");
 const passport = require("passport");
+var livereload = require("connect-livereload");
+
 // when i connecting to react i have to change port and set 8080
 
 // middlewares
@@ -45,17 +47,26 @@ app.use(
     exposedHeaders: ["X-Total-Count"],
   })
 ); // to parse req.body
+app.set("trust proxy", 1); // trust first proxy
+app.use(
+  session({
+    secret: "Stay Signin secret",
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false, maxAge: 2 * 60000 },
+  })
+);
 
 const main = async () => {
   await mongoose.connect(
-    "mongodb://bundheliyadeep:Deep1234@ac-xo85jjn-shard-00-00.hpg57sk.mongodb.net:27017,ac-xo85jjn-shard-00-01.hpg57sk.mongodb.net:27017,ac-xo85jjn-shard-00-02.hpg57sk.mongodb.net:27017/?ssl=true&replicaSet=atlas-mfpcek-shard-0&authSource=admin&retryWrites=true&w=majority"
+    "mongodb+srv://bundheliyadeep:Deep1234@cluster0.hpg57sk.mongodb.net/ecommerce?retryWrites=true&w=majority"
   );
   console.log("database connected");
 };
 main().catch((err) => console.log(err));
 
 app.get("/", (req, resp) => {
-  resp.send("hyy nbvnhv");
+  resp.send("I am Nodejs and i am here to help you for database communication");
 });
 
 app.post("/products", createProduct);
@@ -71,6 +82,7 @@ app.get("/categories", fetchCategories);
 
 app.post("/auth/signup", createUser);
 app.post("/auth/login", loginUser);
+app.get("/auth/hasloginned", hasLoginnedUser);
 app.patch("/users/:id", updateUser);
 app.get("/users/:id", fetchUserById);
 

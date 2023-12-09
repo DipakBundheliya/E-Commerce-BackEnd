@@ -17,7 +17,6 @@ exports.updateUser = async (req, resp) => {
     const product = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
-    console.log(product);
     resp.status(200).json(product);
   } catch (err) {
     resp.status(400).json(err);

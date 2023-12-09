@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
@@ -18,5 +19,13 @@ userSchema.set("toJSON", {
   transform: function (response, ret) {
     delete ret._id;
   },
+});
+
+userSchema.pre("save", async function (next) {
+  const user = this;
+  if (user.isModified("password")) {
+    user.password = await bcrypt.hash(user.password, 8);
+  }
+  next();
 });
 exports.User = mongoose.model("User", userSchema);
