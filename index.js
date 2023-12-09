@@ -80,7 +80,7 @@ app.get("/categories", fetchCategories);
 
 app.post("/auth/signup", createUser);
 app.post("/auth/login", loginUser);
-app.get("/auth/hasloginned", hasLoginnedUser);
+// app.get("/auth/hasloginned", hasLoginnedUser);
 app.patch("/users/:id", updateUser);
 app.get("/users/:id", fetchUserById);
 
