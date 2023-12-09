@@ -27,7 +27,6 @@ const {
 } = require("./controller/Order");
 const session = require("express-session");
 const passport = require("passport");
-var livereload = require("connect-livereload");
 
 // when i connecting to react i have to change port and set 8080
 
